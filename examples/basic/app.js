@@ -6,18 +6,17 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { applyMiddleware, compose, createStore, combineReducers } from 'redux'
 import { Provider } from 'react-redux'
-import { Router, Route, IndexRoute } from 'react-router'
-import createHistory from 'history/lib/createHashHistory'
+import { Router } from 'react-router'
+import { createHistory } from 'history'
 import { syncHistory, routeReducer } from 'redux-simple-router'
 
-import * as reducers from './reducers'
-import { App, Home, Foo, Bar } from './components'
+import { App, BookSelect, SidePanel } from './components'
 
 const history = createHistory()
-const middleware = syncHistory(history)
+const routerMiddleware = syncHistory(history)
 const reducer = combineReducers({
-  ...reducers,
-  routing: routeReducer
+  routing: routeReducer,
+  data: (state) => state || {}
 })
 
 const DevTools = createDevTools(
@@ -27,23 +26,34 @@ const DevTools = createDevTools(
   </DockMonitor>
 )
 
+const books = [
+    { book_id: 1, name: "The ABC's of React" },
+    { book_id: 2, name: "Redux for the Complete Klutz" },
+    { book_id: 3, name: "Routing Right" },
+    { book_id: 4, name: "Functional Functional" }
+]
+
 const finalCreateStore = compose(
-  applyMiddleware(middleware),
+  applyMiddleware(routerMiddleware),
   DevTools.instrument()
 )(createStore)
-const store = finalCreateStore(reducer)
-middleware.listenForReplays(store)
+const store = finalCreateStore(reducer, {data: {book: books}})
+routerMiddleware.listenForReplays(store)
+
+const routeConfig = [
+    {
+        path: '/',
+        component: App,
+        childRoutes: [
+            { path: 'book/:bookId', component: SidePanel }
+        ]
+    }
+]
 
 ReactDOM.render(
   <Provider store={store}>
     <div>
-      <Router history={history}>
-        <Route path="/" component={App}>
-          <IndexRoute component={Home}/>
-          <Route path="foo" component={Foo}/>
-          <Route path="bar" component={Bar}/>
-        </Route>
-      </Router>
+      <Router routes={routeConfig} history={history} />
       <DevTools />
     </div>
   </Provider>,
