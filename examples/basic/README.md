@@ -11,10 +11,10 @@ This example also demonstrates integration with
 
 **To run, follow these steps:**
 
-1. Run `npm install` in the base director of the redux-simple-router project.
+1. Run `npm install` in the base directory of the redux-simple-router project.
 2. Run `npm install` in this directory.
 3. Start the server with with `npm start`
-4. Open browser to http://localhost:8080/
+4. Open browser to [http://localhost:8080/](http://localhost:8080/)
 
 -
 
