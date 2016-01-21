@@ -29,7 +29,6 @@
     "webpack-dev-server": "^1.14.0"
   },
   "scripts": {
-    "start": "webpack --watch",
-    "devserver": "webpack-dev-server --inline --hot --history-api-fallback"
+    "start": "webpack-dev-server --inline --hot --history-api-fallback"
   }
 }

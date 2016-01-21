@@ -3,18 +3,18 @@ redux-simple-router basic example
 
 This is a basic example that demonstrates rendering components based
 on URLs with `react-router` as well as connecting them to Redux state.
-It uses both <Link> elements as well as the `push` action creator 
-provided by redux-simple-router.
+
+Modified to highlight question about accessing route parameters.
 
 This example also demonstrates integration with 
 **[redux-devtools](https://github.com/gaearon/redux-devtools) ^3.0.0**
 
 **To run, follow these steps:**
 
-1. Install dependencies with `npm install` in this directory (make sure it creates a local node_modules)
-2. By default, it uses the local version from `src` of redux-simple-router, so you need to run `npm install` from there first. If you want to use a version straight from npm, remove the lines in `webpack.config.js` at the bottom.
-3. Build with `webpack --watch`
-4. Open `index.html`
+1. Run `npm install` in the base director of the redux-simple-router project.
+2. Run `npm install` in this directory.
+3. Start the server with with `npm start`
+4. Open browser to http://localhost:8080/
 
 -
 
